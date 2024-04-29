@@ -61,7 +61,6 @@ if config_env() === :prod do
     pubsub_server: ChatApi.PubSub,
     secret_key_base: secret_key_base,
     server: true,
-    force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil],
     check_origin: false
 
   if https do
@@ -72,8 +71,7 @@ if config_env() === :prod do
         otp_app: :chat_api,
         keyfile: ssl_key_path,
         certfile: ssl_cert_path
-      ],
-      force_ssl: [rewrite_on: [:x_forwarded_proto]]
+      ]
   end
 end
 

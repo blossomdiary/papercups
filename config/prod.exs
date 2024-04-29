@@ -12,13 +12,3 @@ require_db_ssl =
 
 # Do not print debug messages in production
 config :logger, level: :info
-
-# Heroku needs ssl to be set to true and it doesn't run
-config :chat_api, ChatApi.Repo,
-  ssl: require_db_ssl,
-  url: database_url,
-  show_sensitive_data_on_connection_error: true,
-  socket_options: [:inet],
-  pool_size: pool_size
-
-config :chat_api, ChatApiWeb.Endpoint, force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil]
