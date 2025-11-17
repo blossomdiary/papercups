@@ -19,6 +19,7 @@ import * as Storage from '../../storage';
 import {DashboardShortcutsRenderer} from './DashboardShortcutsModal';
 import {formatServerError} from '../../utils';
 import logger from '../../logger';
+import { isMobile } from 'react-device-detect';
 
 const {REACT_APP_FILE_UPLOADS_ENABLED} = env;
 
@@ -281,9 +282,9 @@ const ConversationFooter = ({
       <Box
         sx={{
           bg: colors.white,
-          px: 4,
+          px: isMobile ? 0 : 4,
           pt: 0,
-          pb: 4,
+          pb: isMobile ? 0 : 4,
           ...sx,
         }}
       >

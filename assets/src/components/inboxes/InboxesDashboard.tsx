@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import {Box, Flex} from 'theme-ui';
 import {MenuItemProps} from 'antd/lib/menu/MenuItem';
+import {isMobile} from 'react-device-detect';
 
 import {colors, Badge, Layout, Menu, Sider} from '../common';
 import {PlusOutlined, SettingOutlined} from '../icons';
@@ -77,6 +78,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
   const {currentUser} = useAuth();
   const {unread} = useConversations();
   const [inboxes, setCustomInboxes] = React.useState<Array<Inbox>>([]);
+  const [isInboxSidebarOpen, setIsInboxSidebarOpen] = React.useState<boolean>(false);
 
   const [section, key] = getSectionKey(pathname);
   const totalNumUnread = unread.conversations.open || 0;
@@ -92,8 +94,30 @@ const InboxesDashboard = (props: RouteComponentProps) => {
     props.history.push(`/inboxes/${inbox.id}`);
   };
 
+  const toggleInboxSidebar = () => {
+    setIsInboxSidebarOpen(!isInboxSidebarOpen);
+  };
+
+  const closeInboxSidebar = () => {
+    setIsInboxSidebarOpen(false);
+  };
+
   return (
     <Layout style={{background: colors.white}}>
+      {isMobile && isInboxSidebarOpen && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 1999,
+          }}
+          onClick={closeInboxSidebar}
+        />
+      )}
       <Sider
         className="Dashboard-Sider"
         width={INBOXES_DASHBOARD_SIDER_WIDTH}
@@ -102,6 +126,11 @@ const InboxesDashboard = (props: RouteComponentProps) => {
           height: '100vh',
           position: 'fixed',
           color: colors.white,
+          ...(isMobile && {
+            left: isInboxSidebarOpen ? '0' : '-220px',
+            transition: 'left 0.3s ease',
+            zIndex: 2000,
+          }),
         }}
       >
         <Flex sx={{flexDirection: 'column', height: '100%'}}>
@@ -268,17 +297,27 @@ const InboxesDashboard = (props: RouteComponentProps) => {
       <Layout
         style={{
           background: colors.white,
-          marginLeft: INBOXES_DASHBOARD_SIDER_WIDTH,
+          marginLeft: isMobile ? 0 : INBOXES_DASHBOARD_SIDER_WIDTH,
         }}
       >
         <Switch>
           <Route
             path="/conversations/:bucket/:conversation_id"
-            component={ConversationsDashboard}
+            render={(props) => (
+              <ConversationsDashboard
+                {...props}
+                onToggleInboxSidebar={toggleInboxSidebar}
+              />
+            )}
           />
           <Route
             path="/conversations/:bucket"
-            component={ConversationsDashboard}
+            render={(props) => (
+              <ConversationsDashboard
+                {...props}
+                onToggleInboxSidebar={toggleInboxSidebar}
+              />
+            )}
           />
           <Route
             path="/inboxes/:inbox_id/conversations/:conversation_id"
