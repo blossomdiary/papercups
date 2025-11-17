@@ -9,7 +9,7 @@ defmodule ChatApi.Emails.Email do
   @type t :: Swoosh.Email.t()
 
   @from_address System.get_env("FROM_ADDRESS") || ""
-  @backend_url System.get_env("BACKEND_URL", "app.papercups.io")
+  @backend_url System.get_env("BACKEND_URL", "papercups.blossomdiary.dev")
 
   defstruct to_address: nil, message: nil
 
@@ -409,7 +409,7 @@ defmodule ChatApi.Emails.Email do
     if Application.get_env(:chat_api, :environment) == :dev do
       "http://localhost:3000"
     else
-      "https://" <> System.get_env("BACKEND_URL", "app.papercups.io")
+      "https://" <> System.get_env("BACKEND_URL", "papercups.blossomdiary.dev")
     end
   end
 

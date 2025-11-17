@@ -17,8 +17,7 @@ export const env = {
 
 const hostname = window.location.hostname;
 
-export const isHostedProd =
-  hostname === 'app.papercups.io' || hostname === 'app.papercups-eu.io';
+export const isHostedProd = hostname === 'papercups.blossomdiary.dev';
 
 export const isEuEdition =
   env.REACT_APP_EU_EDITION === 'true' || env.REACT_APP_EU_EDITION === '1';
@@ -31,7 +30,7 @@ export const isUserInvitationEmailEnabled =
   env.REACT_APP_USER_INVITATION_EMAIL_ENABLED === 'true' ||
   env.REACT_APP_USER_INVITATION_EMAIL_ENABLED === '1';
 
-export const REACT_URL = env.REACT_APP_URL || 'app.papercups.io';
+export const REACT_URL = env.REACT_APP_URL || 'papercups.blossomdiary.dev';
 
 export const BASE_URL = isDev
   ? 'http://localhost:4000'

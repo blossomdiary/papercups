@@ -159,7 +159,7 @@ const ChatWithUs = ({
         greeting="Hi there! Send us a message and we'll get back to you as soon as we can."
         primaryColor="#1890ff"
         hideToggleButton
-        baseUrl="https://app.papercups-eu.io"
+        baseUrl="https://papercups.blossomdiary.dev"
         customer={{
           external_id: formatUserExternalId(currentUser),
           email: currentUser.email,

@@ -198,7 +198,7 @@ defmodule ChatApiWeb.OnboardingStatusControllerTest do
 
     #   # false because host is papercups domain
     #   {:ok, widget_settings} =
-    #  .update_widget_setting(widget_settings, %{host: "app.papercups.io"})
+    #  .update_widget_setting(widget_settings, %{host: "papercups.blossomdiary.dev"})
 
     #   response = get(authed_conn, Routes.onboarding_status_path(authed_conn, :index))
     #   assert %{"is_chat_widget_installed" => false} = json_response(response, 200)

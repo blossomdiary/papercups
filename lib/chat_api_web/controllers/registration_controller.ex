@@ -145,7 +145,7 @@ defmodule ChatApiWeb.RegistrationController do
   @spec default_subscription_plan() :: String.t()
   defp default_subscription_plan() do
     case System.get_env("BACKEND_URL", "") do
-      "app.papercups.io" -> "starter"
+      "papercups.blossomdiary.dev" -> "starter"
       _ -> "team"
     end
   end
