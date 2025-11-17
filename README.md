@@ -1,21 +1,17 @@
-**:warning: Maintenance Mode**
-
-> _Papercups is in maintenance mode. This means there won't be any major new features in the near future. We will still accept pull requests and conduct major bug fixes. Read more [here](https://papercups.io/blog/papercups-maintenance)_
-
 # Papercups
 
-Papercups is an open source live customer support tool web app written in Elixir. We offer a hosted version at [app.papercups.io](https://app.papercups.io/).
+Papercups is an open source live customer support tool web app written in Elixir. We offer a hosted version at [papercups.blossomdiary.dev](https://papercups.blossomdiary.dev/).
 
-You can check out how our chat widget looks and play around with customizing it on our [demo page](https://app.papercups.io/demo/). The chat widget component is also open sourced at [github.com/papercups-io/chat-widget](https://github.com/papercups-io/chat-widget).
+You can check out how our chat widget looks and play around with customizing it on our [demo page](https://papercups.blossomdiary.dev/demo/). The chat widget component is also open sourced at [github.com/blossomdiary/papercups-chat-widget](https://github.com/blossomdiary/papercups-chat-widget).
 
 _Watch how easy it is to get set up with our Slack integration 🚀 :_
 ![slack-setup](https://user-images.githubusercontent.com/4218509/88716918-a0583180-d0d4-11ea-93b3-12437ac51138.gif)
 
-## One click Heroku deployment
+<!-- ## One click Heroku deployment
 
 The fastest way to get started is one click deploy on Heroku with:
 
-<a href="https://heroku.com/deploy?template=https://github.com/papercups-io/papercups"><img src="https://www.herokucdn.com/deploy/button.svg" width="200px" /></a>
+<a href="https://heroku.com/deploy?template=https://github.com/papercups-io/papercups"><img src="https://www.herokucdn.com/deploy/button.svg" width="200px" /></a> -->
 
 ## Philosophy
 
@@ -38,7 +34,7 @@ We wanted to make a self-hosted customer support tool like Zendesk and Intercom 
 
 ## Demo
 
-We set up a [simple page](https://app.papercups.io/demo) that demonstrates how Papercups works.
+We set up a [simple page](https://papercups.blossomdiary.dev/demo) that demonstrates how Papercups works.
 
 Try sending us a message to see what the chat experience is like!
 
@@ -52,7 +48,7 @@ Check out our docs at [docs.papercups.io](https://docs.papercups.io/)
 
 ## Contributing
 
-We :heart: contributions big or small. See [CONTRIBUTING.md](https://github.com/papercups-io/papercups/blob/master/CONTRIBUTING.md) for a guide on how to get started.
+We :heart: contributions big or small. See [CONTRIBUTING.md](https://github.com/blossomdiary/papercups/blob/master/CONTRIBUTING.md) for a guide on how to get started.
 
 ## Thanks to all of our contributors!
 
@@ -90,4 +86,4 @@ We :heart: contributions big or small. See [CONTRIBUTING.md](https://github.com/
 
 ## License
 
-MIT © Papercups
+MIT © [Papercups](https://github.com/papercups-io)
