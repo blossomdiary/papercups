@@ -23,8 +23,8 @@ import ChatWidget from '@papercups-io/chat-widget';
 import {formatUserExternalId} from '../../utils';
 
 const {
-  REACT_APP_ADMIN_ACCOUNT_ID = 'eb504736-0f20-4978-98ff-1a82ae60b266',
-  REACT_APP_ADMIN_INBOX_ID = '1c792b5e-4be9-4e51-98a9-5648311eb398',
+  REACT_APP_ADMIN_ACCOUNT_ID = '9e673642-0480-4fff-8b8c-cd86c30d38d2',
+  REACT_APP_ADMIN_INBOX_ID = '3c093198-2a81-4aa6-bd24-7d1d51bc1cf3',
 } = env;
 
 type Props = RouteComponentProps & {};
