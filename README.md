@@ -1,5 +1,7 @@
 # Papercups
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/blossomdiary/papercups?logo=docker&color=2496ed)](https://hub.docker.com/r/blossomdiary/papercups)
+
 Papercups is an open source live customer support tool web app written in Elixir. We offer a hosted version at [papercups.blossomdiary.dev](https://papercups.blossomdiary.dev/).
 
 You can check out how our chat widget looks and play around with customizing it on our [demo page](https://papercups.blossomdiary.dev/demo/). The chat widget component is also open sourced at [github.com/blossomdiary/papercups-chat-widget](https://github.com/blossomdiary/papercups-chat-widget).
