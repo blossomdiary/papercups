@@ -66,7 +66,7 @@ type Props = {
 const ChatMessageBox = ({
   className,
   message,
-  sx,
+  sx = {},
   attachments = [],
   attachmentTextColor,
 }: Props) => {

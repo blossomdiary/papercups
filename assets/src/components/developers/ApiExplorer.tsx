@@ -64,7 +64,7 @@ class ApiExplorer extends React.Component<Props, State> {
         .then((res) => res.body);
 
       this.handleRunKitOutput(result);
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Failed to run script:', error);
 
       this.handleRunKitOutput({

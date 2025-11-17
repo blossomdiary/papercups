@@ -143,7 +143,7 @@ export class CodeSandbox extends React.Component<Props, State> {
         .then((res) => res.body);
 
       this.handleRunKitOutput(result);
-    } catch (error) {
+    } catch (error: any) {
       logger.error('Failed to run webhook handler:', error);
 
       this.handleRunKitOutput({
