@@ -7,6 +7,7 @@ import ConversationFooter from './ConversationFooter';
 import ConversationDetailsSidebar from './ConversationDetailsSidebar';
 import logger from '../../logger';
 import {useNotifications} from './NotificationsProvider';
+import {isMobile} from 'react-device-detect';
 
 const SelectedConversationContainer = ({
   loading,
@@ -15,12 +16,14 @@ const SelectedConversationContainer = ({
   conversation,
   isClosing,
   setScrollRef,
+  isInfoOpen,
 }: {
   loading: boolean;
   account: Account;
   currentUser: User;
   conversation: Conversation;
   isClosing: boolean;
+  isInfoOpen: boolean;
   // TODO: handle scrolling within this component?
   setScrollRef: any; // (el: any) => void;
 }) => {
@@ -92,8 +95,8 @@ const SelectedConversationContainer = ({
         flex: 1,
         flexDirection: 'column',
         minHeight: 0,
-        minWidth: 640,
-        pr: 240, // TODO: animate this if we make it toggle-able
+        minWidth: isMobile ? '100%' : 640,
+        pr: isMobile ? 0 : 240, // TODO: animate this if we make it toggle-able
       }}
     >
       <ConversationMessages
@@ -120,14 +123,19 @@ const SelectedConversationContainer = ({
         />
       )}
 
-      {customer && conversation && (
+      {customer && conversation && (!isMobile || isInfoOpen) && (
         <Box
           sx={{
-            width: 240,
+            width: isMobile ? '100%' : 240,
             height: '100%',
             overflowY: 'scroll',
             position: 'absolute',
             right: 0,
+            top: 0,
+            backgroundColor: 'white',
+            zIndex: isMobile ? 100 : 'auto',
+            transform: isMobile ? (isInfoOpen ? 'translateX(0)' : 'translateX(100%)') : 'none',
+            transition: isMobile ? 'transform 0.3s ease-in-out' : 'none',
           }}
         >
           <ConversationDetailsSidebar

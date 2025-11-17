@@ -20,6 +20,7 @@ import {
 } from '../icons';
 import {Conversation, User} from '../../types';
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
+import {isMobile} from 'react-device-detect';
 
 // TODO: create date utility methods so we don't have to do this everywhere
 dayjs.extend(utc);
@@ -79,7 +80,11 @@ const ConversationHeader = ({
         py={3}
         px={4}
         backgroundColor={colors.white}
-        sx={{justifyContent: 'space-between', alignItems: 'center'}}
+        sx={{
+          justifyContent: 'space-between',
+          alignItems: isMobile ? 'flex-start' : 'center',
+          flexDirection: isMobile ? 'column' : 'row',
+        }}
       >
         <Box>
           <Flex sx={{alignItems: 'center'}}>
@@ -103,7 +108,7 @@ const ConversationHeader = ({
         <Flex mx={-1}>
           <Box mx={1}>
             <Select
-              style={{minWidth: 240}}
+              style={{minWidth: isMobile ? '100%' : 240}}
               placeholder="No assignee"
               value={assigneeId ? String(assigneeId) : undefined}
               onSelect={handleAssignUser}

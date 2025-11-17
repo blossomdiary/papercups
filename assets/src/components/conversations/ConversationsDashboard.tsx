@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, RouteComponentProps} from 'react-router-dom';
 import {Box, Flex} from 'theme-ui';
+import {isMobile} from 'react-device-detect';
 
 import * as API from '../../api';
 import {Account, Conversation, Inbox, Message, User} from '../../types';
@@ -15,7 +16,7 @@ import {
   Title,
   Tooltip,
 } from '../common';
-import {SettingOutlined} from '../icons';
+import {ArrowLeftOutlined, MenuOutlined, InfoCircleOutlined, SettingOutlined} from '../icons';
 import {
   CONVERSATIONS_DASHBOARD_SIDER_WIDTH,
   formatServerError,
@@ -103,6 +104,7 @@ export const ConversationsDashboard = ({
   filter = {},
   onSelectConversation = noop,
   isValidConversation = defaultConversationFilter,
+  onToggleInboxSidebar,
 }: {
   title: string;
   account: Account;
@@ -112,6 +114,7 @@ export const ConversationsDashboard = ({
   filter: Record<string, any>;
   onSelectConversation: (conversationId: string) => void;
   isValidConversation: (conversation: Conversation) => boolean;
+  onToggleInboxSidebar?: () => void;
 }) => {
   const scrollToEl = React.useRef<any>(null);
   const [status, setStatus] = React.useState<
@@ -130,6 +133,8 @@ export const ConversationsDashboard = ({
     string | null
   >(initialSelectedConversationId);
   const [closing, setClosingConversations] = React.useState<Array<string>>([]);
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState<boolean>(false);
+  const [isInfoOpen, setIsInfoOpen] = React.useState<boolean>(false);
 
   const {
     fetchConversations,
@@ -248,6 +253,13 @@ export const ConversationsDashboard = ({
   React.useEffect(() => {
     scrollToEl.current?.scrollIntoView();
   }, [title, selectedConversationId, messages.length]);
+
+  // Close info sidebar on mobile when conversation changes
+  React.useEffect(() => {
+    if (isMobile && isInfoOpen) {
+      setIsInfoOpen(false);
+    }
+  }, [selectedConversationId]);
 
   function setScrollRef(el: any) {
     scrollToEl.current = el || null;
@@ -379,7 +391,24 @@ export const ConversationsDashboard = ({
       handleConversationSeen(conversationId);
     }
 
+    // Close sidebar on mobile when conversation is selected
+    if (isMobile) {
+      closeSidebar();
+    }
+
     onSelectConversation(conversationId);
+  }
+
+  function handleBackToList() {
+    setSelectedConversationId(null);
+  }
+
+  function toggleSidebar() {
+    setIsSidebarOpen(!isSidebarOpen);
+  }
+
+  function closeSidebar() {
+    setIsSidebarOpen(false);
   }
 
   async function handleLoadMoreConversations() {
@@ -540,7 +569,21 @@ export const ConversationsDashboard = ({
   }
 
   return (
-    <Layout style={{background: colors.white}}>
+    <Layout style={{background: colors.white, position: 'relative'}}>
+      {isMobile && isSidebarOpen && (
+        <Box
+          sx={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.5)',
+            zIndex: 999,
+          }}
+          onClick={closeSidebar}
+        />
+      )}
       <Sider
         theme="light"
         width={CONVERSATIONS_DASHBOARD_SIDER_WIDTH}
@@ -549,6 +592,9 @@ export const ConversationsDashboard = ({
           overflow: 'auto',
           height: '100vh',
           position: 'fixed',
+          left: isMobile && !isSidebarOpen ? '-280px' : (isMobile ? '0' : 'auto'),
+          transition: isMobile ? 'left 0.3s ease' : 'none',
+          zIndex: isMobile ? 1000 : 'auto',
         }}
       >
         <Box sx={{position: 'relative', borderBottom: '1px solid #f0f0f0'}}>
@@ -600,10 +646,39 @@ export const ConversationsDashboard = ({
 
       <Layout
         style={{
-          marginLeft: CONVERSATIONS_DASHBOARD_SIDER_WIDTH,
+          marginLeft: isMobile ? 0 : CONVERSATIONS_DASHBOARD_SIDER_WIDTH,
           background: colors.white,
         }}
       >
+        {isMobile && (
+          <Box
+            sx={{
+              padding: 2,
+              borderBottom: '1px solid #f0f0f0',
+              background: colors.white,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 2,
+            }}
+          >
+            <Button
+              type="text"
+              icon={<MenuOutlined />}
+              onClick={onToggleInboxSidebar || toggleSidebar}
+              size="large"
+            />
+            <Title level={4} style={{margin: 0}}>
+              {conversation ? 'Conversation' : title}
+            </Title>
+            <div style={{width: '100%'}}/>
+            <Button
+              type="text"
+              icon={<InfoCircleOutlined />}
+              onClick={() => setIsInfoOpen(!isInfoOpen)}
+              size="large"
+            />
+          </Box>
+        )}
         {conversation && (
           <ConversationHeader
             conversation={conversation}
@@ -625,6 +700,7 @@ export const ConversationsDashboard = ({
             conversation={conversation}
             isClosing={isClosingSelected}
             setScrollRef={setScrollRef}
+            isInfoOpen={isInfoOpen}
           />
         ) : (
           <EmptyState
@@ -669,10 +745,13 @@ const isValidBucket = (bucket: string): bucket is ConversationBucket => {
 };
 
 const Wrapper = (
-  props: RouteComponentProps<{bucket: string; conversation_id?: string}>
+  props: RouteComponentProps<{bucket: string; conversation_id?: string}> & {
+    onToggleInboxSidebar?: () => void;
+  }
 ) => {
   const {bucket, conversation_id: conversationId = null} = props.match.params;
   const {currentUser, account} = useAuth();
+  const {onToggleInboxSidebar} = props;
 
   if (!isValidBucket(bucket)) {
     // TODO: render error or redirect to default
@@ -794,6 +873,7 @@ const Wrapper = (
       initialSelectedConversationId={conversationId}
       onSelectConversation={handleSelectConversation}
       isValidConversation={isValidConversation}
+      onToggleInboxSidebar={onToggleInboxSidebar}
     />
   );
 };
