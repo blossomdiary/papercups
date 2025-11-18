@@ -16,7 +16,7 @@ import {
   Title,
   Tooltip,
 } from '../common';
-import {MenuOutlined, InfoCircleOutlined, SettingOutlined} from '../icons';
+import {MenuOutlined, InfoCircleOutlined, SettingOutlined, MailOutlined, ArrowLeftOutlined} from '../icons';
 import {
   CONVERSATIONS_DASHBOARD_SIDER_WIDTH,
   formatServerError,
@@ -135,6 +135,7 @@ export const ConversationsDashboard = ({
   const [closing, setClosingConversations] = React.useState<Array<string>>([]);
   const [isSidebarOpen, setIsSidebarOpen] = React.useState<boolean>(false);
   const [isInfoOpen, setIsInfoOpen] = React.useState<boolean>(false);
+  const [isMailOpen, setIsMailOpen] = React.useState<boolean>(false);
 
   const {
     fetchConversations,
@@ -256,8 +257,9 @@ export const ConversationsDashboard = ({
 
   // Close info sidebar on mobile when conversation changes
   React.useEffect(() => {
-    if (isMobile && isInfoOpen) {
+    if (isMobile) {
       setIsInfoOpen(false);
+      setIsMailOpen(false);
     }
   }, [selectedConversationId]);
 
@@ -586,13 +588,13 @@ export const ConversationsDashboard = ({
       )}
       <Sider
         theme="light"
-        width={CONVERSATIONS_DASHBOARD_SIDER_WIDTH}
+        width={(isMobile && isMailOpen) ? '100%' : CONVERSATIONS_DASHBOARD_SIDER_WIDTH}
         style={{
           borderRight: '1px solid #f0f0f0',
           overflow: 'auto',
           height: '100vh',
-          position: 'fixed',
-          left: isMobile && !isSidebarOpen ? '-280px' : isMobile ? '0' : 'auto',
+          position: isMobile ? 'absolute' : 'fixed',
+          left: isMobile ? (isSidebarOpen || isMailOpen ? 0 : -CONVERSATIONS_DASHBOARD_SIDER_WIDTH) : 'auto',
           transition: isMobile ? 'left 0.3s ease' : 'none',
           zIndex: isMobile ? 1000 : 'auto',
         }}
@@ -614,7 +616,17 @@ export const ConversationsDashboard = ({
             </Box>
           )}
           <Box px={3} py={3}>
-            <Title level={3} style={{marginBottom: 0, marginTop: 8}}>
+            <Title level={3} style={{marginBottom: 0, marginTop: 8, display: 'flex', alignItems: 'center'}}>
+              {isMobile && (
+                <Button
+                  type="text"
+                  icon={<ArrowLeftOutlined />}
+                  color="black"
+                  onClick={() => setIsMailOpen(!isMailOpen)}
+                  size="small"
+                  style={{ marginRight: 8 }}
+                />
+              )}
               {title}
             </Title>
           </Box>
@@ -673,13 +685,20 @@ export const ConversationsDashboard = ({
             <div style={{width: '100%'}} />
             <Button
               type="text"
+              icon={<MailOutlined />}
+              onClick={() => setIsMailOpen(!isMailOpen)}
+              style={{ right: 4 }}
+              size="large"
+            />
+            <Button
+              type="text"
               icon={<InfoCircleOutlined />}
               onClick={() => setIsInfoOpen(!isInfoOpen)}
               size="large"
             />
           </Box>
         )}
-        {conversation && (
+        {(conversation && !isInfoOpen) && (
           <ConversationHeader
             conversation={conversation}
             users={users}

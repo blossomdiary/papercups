@@ -328,20 +328,23 @@ const ConversationFooter = ({
                 </Menu.Item>
               </Menu>
 
-              <Box sx={{position: 'absolute', right: 0, top: 0, opacity: 0.8}}>
-                <DashboardShortcutsRenderer>
-                  {(handleOpenModal) => (
-                    <Tooltip placement="top" title="View keyboard shortcuts">
-                      <Button
-                        type="text"
-                        size="small"
-                        icon={<InfoCircleOutlined />}
-                        onClick={handleOpenModal}
-                      />
-                    </Tooltip>
-                  )}
-                </DashboardShortcutsRenderer>
-              </Box>
+              {
+                isMobile ||
+                <Box sx={{position: 'absolute', right: 0, top: 0, opacity: 0.8}}>
+                  <DashboardShortcutsRenderer>
+                    {(handleOpenModal) => (
+                      <Tooltip placement="top" title="View keyboard shortcuts">
+                        <Button
+                          type="text"
+                          size="small"
+                          icon={<InfoCircleOutlined />}
+                          onClick={handleOpenModal}
+                        />
+                      </Tooltip>
+                    )}
+                  </DashboardShortcutsRenderer>
+                </Box>
+              }
             </Box>
 
             <Box mb={2}>
