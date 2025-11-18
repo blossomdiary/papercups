@@ -32,7 +32,7 @@ const CustomerMessage = ({
         sx={{
           fontSize: 14,
           padding: '12px 16px',
-          background: color || 'rgb(24, 144, 255)',
+          background: color || '#1890ff',
           color: '#fff',
           whiteSpace: 'pre-wrap',
           transition: 'background 0.4s ease',
