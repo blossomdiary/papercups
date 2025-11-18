@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {Box, Flex} from 'theme-ui';
 import {colors, Text} from '../common';
 import {CheckOutlined} from '../icons';
+import {BRAND_COLOR} from '../../config';
 
 const ConversationClosing = ({isHighlighted}: {isHighlighted?: boolean}) => {
   return (
@@ -12,7 +13,7 @@ const ConversationClosing = ({isHighlighted}: {isHighlighted?: boolean}) => {
         opacity: 0.8,
         borderBottom: '1px solid #f0f0f0',
         borderLeft: isHighlighted ? `2px solid ${colors.primary}` : null,
-        background: isHighlighted ? colors.blue[0] : null,
+        background: isHighlighted ? `${BRAND_COLOR}10` : null,
         cursor: 'pointer',
       }}
     >

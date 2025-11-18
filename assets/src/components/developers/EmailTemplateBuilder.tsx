@@ -2,13 +2,14 @@ import React from 'react';
 import {Box, Flex} from 'theme-ui';
 import MonacoEditor from './MonacoEditor';
 import {getIframeContents} from './email/html';
+import {BRAND_COLOR} from '../../config';
 
 const DEFAULT_CODE_VALUE = `
 const Email = () => {
   return (
     <Layout background="#f9f9f9">
       <Container minWidth={320} maxWidth={640}>
-        <Content bordered theme={{color: "#1890ff"}}>
+        <Content bordered theme={{color: "${BRAND_COLOR}"}}>
           <Body>
             <Paragraph>
               Hey there!

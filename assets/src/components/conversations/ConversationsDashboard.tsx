@@ -16,7 +16,7 @@ import {
   Title,
   Tooltip,
 } from '../common';
-import {ArrowLeftOutlined, MenuOutlined, InfoCircleOutlined, SettingOutlined} from '../icons';
+import {MenuOutlined, InfoCircleOutlined, SettingOutlined} from '../icons';
 import {
   CONVERSATIONS_DASHBOARD_SIDER_WIDTH,
   formatServerError,
@@ -592,7 +592,7 @@ export const ConversationsDashboard = ({
           overflow: 'auto',
           height: '100vh',
           position: 'fixed',
-          left: isMobile && !isSidebarOpen ? '-280px' : (isMobile ? '0' : 'auto'),
+          left: isMobile && !isSidebarOpen ? '-280px' : isMobile ? '0' : 'auto',
           transition: isMobile ? 'left 0.3s ease' : 'none',
           zIndex: isMobile ? 1000 : 'auto',
         }}
@@ -670,7 +670,7 @@ export const ConversationsDashboard = ({
             <Title level={4} style={{margin: 0}}>
               {conversation ? 'Conversation' : title}
             </Title>
-            <div style={{width: '100%'}}/>
+            <div style={{width: '100%'}} />
             <Button
               type="text"
               icon={<InfoCircleOutlined />}

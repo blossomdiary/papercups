@@ -1,5 +1,143 @@
 @import '~antd/dist/antd.css';
 
+/* CSS Variables for dynamic brand color theming */
+/* These default values will be overridden by JavaScript in App.tsx based on BRAND_COLOR config */
+/* :root {
+  --brand-color: #1890ff;
+  --brand-color-hover: #40a9ff;
+  --brand-color-active: #096dd9;
+  --brand-color-light: #e6f7ff;
+  --brand-color-lighter: #bae7ff;
+  --brand-color-dark: #000c17;
+  --brand-color-darker: #000000;
+} */
+
+/* Override Ant Design primary color with CSS variables */
+.ant-btn-primary {
+  background-color: var(--brand-color) !important;
+  border-color: var(--brand-color) !important;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: var(--brand-color-hover) !important;
+  border-color: var(--brand-color-hover) !important;
+}
+
+.ant-btn-primary:active {
+  background-color: var(--brand-color-active) !important;
+  border-color: var(--brand-color-active) !important;
+}
+
+.ant-btn-link {
+  color: var(--brand-color) !important;
+}
+
+.ant-btn-link:hover,
+.ant-btn-link:focus {
+  color: var(--brand-color-hover) !important;
+}
+
+.ant-switch-checked {
+  background-color: var(--brand-color) !important;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+  border-color: var(--brand-color) !important;
+  color: var(--brand-color) !important;
+  background: var(--brand-color) !important;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover {
+  border-color: var(--brand-color-hover) !important;
+  color: #fff !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--brand-color) !important;
+  border-color: var(--brand-color) !important;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: var(--brand-color) !important;
+}
+
+.ant-input:focus,
+.ant-input-focused {
+  border-color: var(--brand-color-hover) !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+  border-color: var(--brand-color-hover) !important;
+}
+
+.ant-select-focused:not(.ant-select-disabled).ant-select-single:not(.ant-select-customize-input)
+  .ant-select-selector {
+  border-color: var(--brand-color-hover) !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--brand-color) !important;
+}
+
+.ant-tabs-ink-bar {
+  background: var(--brand-color) !important;
+}
+
+/* Dark sidebar menu - keep white color for selected items */
+.Dashboard-Sider .ant-menu-item-selected,
+.Dashboard-Sider .ant-menu-item-selected a,
+.Dashboard-Sider .ant-menu-item-selected a:hover {
+  color: #fff !important;
+}
+
+/* Light theme menus - use brand color */
+.ant-menu-light .ant-menu-item-selected {
+  color: var(--brand-color) !important;
+}
+
+.ant-menu-light .ant-menu-item-selected a,
+.ant-menu-light .ant-menu-item-selected a:hover {
+  color: var(--brand-color) !important;
+}
+
+/* Horizontal menu items (Reply/Note tabs) */
+.ant-menu-horizontal > .ant-menu-item-selected {
+  color: var(--brand-color) !important;
+  border-bottom-color: var(--brand-color) !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item:hover {
+  color: var(--brand-color) !important;
+  border-bottom-color: var(--brand-color) !important;
+}
+
+.ant-badge-count {
+  background: var(--brand-color) !important;
+}
+
+a {
+  color: var(--brand-color);
+}
+
+a:hover {
+  color: var(--brand-color-hover);
+}
+
+.ant-spin-dot-item {
+  background-color: var(--brand-color) !important;
+}
+
+.ant-tag-blue {
+  color: var(--brand-color) !important;
+  background: var(--brand-color-light) !important;
+  border-color: var(--brand-color-lighter) !important;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -149,4 +287,64 @@ a.RelatedCustomerConversation--link:hover {
 .Dashboard-Sider ul.ant-menu.ant-menu-dark,
 .Dashboard-Sider ul.ant-menu.ant-menu-dark .ant-menu-sub {
   background: transparent;
+}
+
+.ant-layout-sider-children .ant-menu-item-selected {
+  background: var(--brand-color) !important;
+}
+
+.ant-layout-sider.ant-layout-sider-dark.ant-layout-sider-collapsed {
+  background: var(--brand-color-darker) !important;
+}
+
+.Dashboard-Sider > .ant-layout-sider-children {
+  background: var(--brand-color-dark) !important;
+}
+
+.ant-menu.ant-menu-dark {
+  background: transparent !important;
+}
+
+.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-submenu-active {
+  color: var(--brand-color) !important;
+}
+
+a.ant-typography,
+.ant-typography a {
+  color: var(--brand-color) !important;
+}
+
+.ant-menu .ant-menu-submenu-selected {
+  color: var(--brand-color) !important;
+}
+
+.ant-menu .ant-menu-sub .ant-menu-inline .ant-menu-sub {
+  background: var(--brand-color-darker) !important;
+}
+
+.ant-menu-vertical {
+  background: var(--brand-color-darker) !important;
+}
+
+.ant-menu-vertical .ant-menu-item-selected {
+  background: var(--brand-color) !important;
+}
+
+/* Override brand color to only info alerts */
+.ant-alert-info {
+  background: var(--brand-color-light) !important;
+  border-color: var(--brand-color-hover) !important;
+}
+
+.anticon-info-circle.ant-alert-icon {
+  color: var(--brand-color) !important;
+}
+
+.ant-menu-submenu-title {
+  color: white !important;
+}
+
+.anticon.anticon-loading.ant-spin-dot {
+  color: var(--brand-color) !important;
 }

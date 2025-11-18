@@ -5,7 +5,7 @@ import request from 'superagent';
 import {noop} from '../../utils';
 import logger from '../../logger';
 import {BASE_URL} from '../../config';
-import {Divider, StandardSyntaxHighlighter, Text} from '../common';
+import {Divider, StandardSyntaxHighlighter, Text, colors} from '../common';
 import RunKitWrapper from './RunKitWrapper';
 import EmbeddableChat from './EmbeddableChat';
 import {WEBHOOK_HANDLER_SOURCE} from './RunKit';
@@ -29,7 +29,7 @@ const DefaultSidebar = ({
         sx={{height: 360, width: '100%'}}
         config={{
           accountId,
-          primaryColor: '#1890ff',
+          primaryColor: colors.primary,
           greeting: 'Send a message below to test your webhook handler!',
           newMessagePlaceholder: 'Send a test message...',
           baseUrl: BASE_URL,

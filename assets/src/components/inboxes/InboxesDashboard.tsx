@@ -78,7 +78,9 @@ const InboxesDashboard = (props: RouteComponentProps) => {
   const {currentUser} = useAuth();
   const {unread} = useConversations();
   const [inboxes, setCustomInboxes] = React.useState<Array<Inbox>>([]);
-  const [isInboxSidebarOpen, setIsInboxSidebarOpen] = React.useState<boolean>(false);
+  const [isInboxSidebarOpen, setIsInboxSidebarOpen] = React.useState<boolean>(
+    false
+  );
 
   const [section, key] = getSectionKey(pathname);
   const totalNumUnread = unread.conversations.open || 0;
@@ -154,7 +156,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                       <Box mr={2}>All</Box>
                       <Badge
                         count={totalNumUnread}
-                        style={{borderColor: '#FF4D4F'}}
+                        style={{borderColor: colors.primary}}
                       />
                     </Flex>
                   </Link>
@@ -170,7 +172,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                       <Box mr={2}>Assigned to me</Box>
                       <Badge
                         count={unread.conversations.assigned || 0}
-                        style={{borderColor: '#FF4D4F'}}
+                        style={{borderColor: colors.primary}}
                       />
                     </Flex>
                   </Link>
@@ -186,7 +188,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                       <Box mr={2}>Mentions</Box>
                       <Badge
                         count={unread.conversations.mentioned || 0}
-                        style={{borderColor: '#FF4D4F'}}
+                        style={{borderColor: colors.primary}}
                       />
                     </Flex>
                   </Link>
@@ -202,7 +204,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                       <Box mr={2}>Unread</Box>
                       <Badge
                         count={unread.conversations.unread || 0}
-                        style={{borderColor: '#FF4D4F'}}
+                        style={{borderColor: colors.primary}}
                       />
                     </Flex>
                   </Link>
@@ -218,7 +220,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                       <Box mr={2}>Unassigned</Box>
                       <Badge
                         count={unread.conversations.unassigned}
-                        style={{borderColor: '#FF4D4F'}}
+                        style={{borderColor: colors.primary}}
                       />
                     </Flex>
                   </Link>
@@ -234,7 +236,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                       <Box mr={2}>Prioritized</Box>
                       <Badge
                         count={unread.conversations.priority}
-                        style={{borderColor: '#FF4D4F'}}
+                        style={{borderColor: colors.primary}}
                       />
                     </Flex>
                   </Link>
@@ -260,7 +262,7 @@ const InboxesDashboard = (props: RouteComponentProps) => {
                           <Box mr={2}>{name}</Box>
                           <Badge
                             count={unread.inboxes[id] || 0}
-                            style={{borderColor: '#FF4D4F'}}
+                            style={{borderColor: colors.primary}}
                           />
                         </Flex>
                       </Link>

@@ -52,3 +52,6 @@ export const HUBSPOT_CLIENT_ID =
 // Defaults to Papercups client ID (it's ok for this value to be public)
 export const INTERCOM_CLIENT_ID =
   env.REACT_APP_INTERCOM_CLIENT_ID || '9d849ad9-d174-476f-aa1f-1d27370a937b';
+
+// Brand color configuration - defaults to Papercups blue (#1890ff)
+export const BRAND_COLOR = env.REACT_APP_BRAND_COLOR || '#1890ff';
