@@ -13,6 +13,7 @@ import {
 } from './support';
 import {useAuth} from '../auth/AuthProvider';
 import {SenderAvatar} from './ChatMessage';
+import {BRAND_COLOR} from '../../config';
 
 dayjs.extend(utc);
 
@@ -66,7 +67,7 @@ const ConversationItem = ({
         opacity: isClosed ? 0.8 : 1,
         borderBottom: '1px solid #f0f0f0',
         borderLeft: isHighlighted ? `2px solid ${colors.primary}` : null,
-        background: isHighlighted ? colors.blue[0] : null,
+        background: isHighlighted ? `${BRAND_COLOR}10` : null,
         cursor: 'pointer',
       }}
       onClick={() => onSelectConversation(id)}

@@ -35,7 +35,6 @@ import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter';
 import {prism as syntaxHighlightingLanguage} from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import {
-  blue,
   green,
   red,
   volcano,
@@ -49,6 +48,7 @@ import {
 import {Box, BoxProps, Flex, SxStyleProp} from 'theme-ui';
 import DatePicker from './DatePicker';
 import MarkdownRenderer from './MarkdownRenderer';
+import {BRAND_COLOR} from '../config';
 
 export type {UploadChangeParam} from 'antd/lib/upload';
 export type {UploadFile} from 'antd/lib/upload/interface';
@@ -60,7 +60,7 @@ const {RangePicker} = DatePicker;
 export const colors = {
   white: '#fff',
   black: '#000',
-  primary: blue[5],
+  primary: BRAND_COLOR,
   green: green[5],
   red: red[5],
   gold: gold[5],
@@ -68,7 +68,6 @@ export const colors = {
   orange: orange[5],
   purple: purple[5],
   magenta: magenta[5],
-  blue: blue, // expose all blues
   gray: grey, // expose all grays
   text: 'rgba(0, 0, 0, 0.65)',
   secondary: 'rgba(0, 0, 0, 0.45)',

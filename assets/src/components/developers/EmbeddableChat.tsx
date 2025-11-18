@@ -7,7 +7,7 @@ import {
   Config,
 } from '@papercups-io/chat-builder';
 import {Message} from '../../types';
-import {MarkdownRenderer} from '../common';
+import {MarkdownRenderer, colors} from '../common';
 
 const CustomerMessage = ({
   message,
@@ -32,7 +32,7 @@ const CustomerMessage = ({
         sx={{
           fontSize: 14,
           padding: '12px 16px',
-          background: color || '#1890ff',
+          background: color || colors.primary,
           color: '#fff',
           whiteSpace: 'pre-wrap',
           transition: 'background 0.4s ease',

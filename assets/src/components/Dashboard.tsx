@@ -157,7 +157,7 @@ const ChatWithUs = ({
         title="Need help with anything?"
         subtitle="Ask us in the chat window below 😊"
         greeting="Hi there! Send us a message and we'll get back to you as soon as we can."
-        primaryColor="#1890ff"
+        primaryColor={colors.primary}
         hideToggleButton
         baseUrl="https://papercups.blossomdiary.dev"
         customer={{
@@ -180,7 +180,7 @@ const ChatWithUs = ({
       title="Need help with anything?"
       subtitle="Ask us in the chat window below 😊"
       greeting="Hi there! Send us a message and we'll get back to you as soon as we can."
-      primaryColor="#1890ff"
+      primaryColor={colors.primary}
       hideToggleButton
       customer={{
         external_id: formatUserExternalId(currentUser),

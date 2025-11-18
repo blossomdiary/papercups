@@ -6,7 +6,7 @@ export const TAG_COLORS = [
   {name: 'red', hex: colors.red},
   {name: 'volcano', hex: colors.volcano},
   {name: 'purple', hex: colors.purple},
-  {name: 'blue', hex: colors.blue},
+  {name: 'primary', hex: colors.primary},
 ];
 
 export const defaultTagColor = (index: number) => {
